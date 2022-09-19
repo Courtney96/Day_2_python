@@ -98,6 +98,7 @@ def quantifiers():
     print(f"{regex:<30}: {result.group()}")
 
 
+
 def custom_classes_and_escaping_sequences():
     # create your own character class
     regex = r"[\w\d]"
@@ -159,15 +160,14 @@ def control_flags():
 
 
 def main():
-    get_match_object()
-    character_classes()
-    positional_anchors()
-    quantifiers()
-    custom_classes_and_escaping_sequences()
-    grouping_and_capturing_regexes()
-    control_flags()
-    return 0
-
+    # get_match_object()
+    # character_classes()
+    # positional_anchors()
+    # quantifiers()
+    # custom_classes_and_escaping_sequences()
+    # grouping_and_capturing_regexes()
+    # control_flags()
+      return 0
 
 if __name__ == '__main__':
     sys.exit(main())
