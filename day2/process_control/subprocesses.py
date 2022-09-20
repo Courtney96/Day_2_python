@@ -6,6 +6,7 @@ import sys
 import time
 
 
+
 def simplest_way():
     process = subprocess.run(
         shlex.split("sleep 10")
@@ -16,13 +17,12 @@ def simplest_way():
     print(f"{process.stdout = }")
     print(f"{process.stderr = }")
 
-
 def create_subprocess():
     # https://docs.python.org/3/library/subprocess.html#popen-constructor
     print(f"{os.getpid() = }")  # the process id for this module's process
     process = subprocess.Popen(
         shlex.split(
-            "python /Users/paulkorir/PycharmProjects/code-fastfoundations/day2/"
+            "C:/Users/bull_/PycharmProjects/code-fastfoundations/day2/"
             "process_control/simple_task.py"
         ),
         stdin=subprocess.PIPE,  # necessary to communicate the input value
@@ -61,7 +61,6 @@ def main():
     # create_subprocess()
     # stop_subprocess()
     return 0
-
 
 if __name__ == '__main__':
     sys.exit(main())

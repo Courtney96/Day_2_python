@@ -42,15 +42,15 @@ def read_json_file():
     with open("NCBIGene_84570.json", 'w') as j:
         json.dump(data, j, indent=4)
 
-def convert_gtf_to_gz():
-    import gzip
-    with open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf") as f, gzip.open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf.gz", 'wb') # need to finish this line
-        for row in f:
-            g.write(row.encode('utf-8'))
-
-    with gzip.open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf.gz") as g:
-        for row in g:
-            print(row)
+# def convert_gtf_to_gz():
+#     import gzip
+#     with open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf") as f, gzip.open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf.gz", 'wb') # need to finish this line
+#         for row in f:
+#             g.write(row.encode('utf-8'))
+#
+#     with gzip.open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf.gz") as g:
+#         for row in g:
+#             print(row)
 
 
 def working_with_binary_data():
@@ -70,6 +70,21 @@ def working_with_binary_data():
     # zip_bin_data = zlib.compress(bin_data)
     # print(f"zip_bin_data: [{len(zip_bin_data)} bytes]\n\t* {zip_bin_data[:100]}...")
 
+def binary_float_and_ints():
+    import struct
+    import random
+    int_data = [random.randint(0,200) for _ in range(1000)]
+    float_data = [random.random() for _ in range(1000)]
+    bin_data = struct.pack("<1000i", *int_data)
+    bin_data += struct.pack("<1000f", *int_data)
+    print(len(bin_data))
+
+    def return_to_actual_from_binary(bin_data):
+        import struct
+        int_data = struct.unpack("<1000i", bin_data[:4000])
+        print(f"{int_data[-10:]}")
+        float_data = struct.unpack("<1000f", bin_data[4000:])
+        print(f"{float_data[-10:]}")
 
 def compressing_binary_data():
     import random
@@ -93,6 +108,8 @@ def main():
     # working_with_binary_data()
     # compressing_binary_data()
     # convert_gtf_to_gz()
+    # binary_float_and_ints()
+      return_to_actual_from_binary(bin_data)
       return 0
 
 
