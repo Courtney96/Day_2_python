@@ -1,17 +1,18 @@
 import sys
 
 
+
 def working_with_gzip_files():
     import gzip
     # read
     with gzip.open(
-            "/Users/paulkorir/PycharmProjects/code-fastfoundations/day2/dir1/dir3/dir4/our_deepest_fear.txt.gz"
+            "dir1/dir3/dir4/our_deepest_fear.txt.gz"
     ) as g:
         text = g.read()
         print(type(text))
     # write
     with gzip.open(
-            "/Users/paulkorir/PycharmProjects/code-fastfoundations/day2/dir1/dir3/dir4/youth.txt.gz",
+            "dir1/dir3/dir4/youth.txt.gz",
             'wb'
     ) as g:  # a binary file
         # g.write("It takes a very long time to become young.\n") # TypeError
@@ -19,7 +20,7 @@ def working_with_gzip_files():
         g.write("It takes a very long time to become young.\n".encode('utf-8'))
         g.write("― Pablo Picasso\n".encode('utf-8'))
     with gzip.open(
-            "/Users/paulkorir/PycharmProjects/code-fastfoundations/day2/dir1/dir3/dir4/youth.txt.gz"
+            "dir1/dir3/dir4/youth.txt.gz"
     ) as g:
         print(g.read())
 
@@ -38,8 +39,18 @@ def read_json_file():
     # now we can modify it
     data['retrieved'] = datetime.datetime.now().isoformat()
     # then we write it out
-    with open("NCBIGene:84570.json", 'w') as j:
+    with open("NCBIGene_84570.json", 'w') as j:
         json.dump(data, j, indent=4)
+
+def convert_gtf_to_gz():
+    import gzip
+    with open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf") as f, gzip.open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf.gz", 'wb') # need to finish this line
+        for row in f:
+            g.write(row.encode('utf-8'))
+
+    with gzip.open("Homo_sapiens.GRCh38.107.shuffled_and_truncated.gtf.gz") as g:
+        for row in g:
+            print(row)
 
 
 def working_with_binary_data():
@@ -79,9 +90,10 @@ def compressing_binary_data():
 def main():
     # working_with_gzip_files()
     # read_json_file()
-    working_with_binary_data()
-    compressing_binary_data()
-    return 0
+    # working_with_binary_data()
+    # compressing_binary_data()
+    # convert_gtf_to_gz()
+      return 0
 
 
 if __name__ == '__main__':

@@ -45,6 +45,10 @@ def navigating_files():
         # perfect!
         print(f"{f.read() = }")
 
+def reading_wagata():
+    with open("wagata.txt", encoding='utf-32') as f:
+        print(f.read())
+
 
 def working_with_paths():
     import pathlib
@@ -62,8 +66,8 @@ def working_with_paths():
     print(f"{file_path.suffix = }")
     print(f"{file_path.suffixes = }")
     print(f"{file_path.stem = }")
-
-
+#
+#
 def testing_paths():
     import pathlib
     my_path = pathlib.Path("..")  # the parent directory
@@ -74,18 +78,18 @@ def testing_paths():
     print(f"{my_path.is_relative_to('/Users/paulkorir/') = }")
     print(f"{my_path.is_relative_to('.') = }")
 
-
+#
 def useful_path_operations():
     import pathlib
-    my_path = pathlib.Path("/Users/paulkorir/PycharmProjects/code-fastfoundations/day2/dir1/dir3/dir4/einstein.txt")
+    my_path = pathlib.Path("dir1/dir3/dir4/einstein.txt")
     with my_path.open() as f:
         print(f.read())
-    my_path = pathlib.Path("~/PycharmProjects/code-fastfoundations/day2/dir1/dir3/dir4/einstein.txt")  # ~ = user dir
+    my_path = pathlib.Path("dir1/dir3/dir4/einstein.txt")  # ~ = user dir
     # with my_path.open() as f: # raises an exception
     #     print(f.read())
     with my_path.expanduser().open() as f:  # need to expand user first
         print(f.read())
-    my_path = pathlib.Path("/Users/paulkorir/PycharmProjects/code-fastfoundations/day2")
+    my_path = pathlib.Path("day2")
     print(f"{my_path.glob('*') = }")  # globbing; just like on the bash terminal
     print(f"{'GLOBBING'}")
     for path_object in my_path.glob('*'):
@@ -96,6 +100,8 @@ def useful_path_operations():
     print(f"{'RECURSIVE GLOBBING'}")
     for path_object in my_path.rglob('**/*'):  # recursive globbing
         print(f"\t* {path_object.name:<30} ==> {path_object.parent}")
+#
+
 
 
 def main():
@@ -105,8 +111,9 @@ def main():
     # navigating_files()
     # working_with_paths()
     # testing_paths()
-    useful_path_operations()
-    return 0
+      useful_path_operations()
+    # reading_wagata
+      return 0
 
 
 if __name__ == '__main__':

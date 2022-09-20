@@ -7,6 +7,12 @@ def plain_while():
         print(f"{i = }")
         i += 1
 
+def reverse_while():
+    i = 9
+    while i > -1:
+        print(f"{i = 1}") #wrong code
+        i =- 1
+
 
 def complex_while():
     from my_functions import calculate_geometric_series
@@ -29,10 +35,11 @@ def loop_over_file():
 
 
 def main():
-    # plain_while()
-    # complex_while()
-    loop_over_file()
-    return 0
+     # plain_while()
+     # complex_while()
+     # loop_over_file()
+       reverse_while
+       return 0
 
 
 if __name__ == '__main__':
