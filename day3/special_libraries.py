@@ -40,13 +40,84 @@ def using_datetime_library():
     print(f"{datetime2 - datetime1 = }") # timedelta
     print(f"{datetime.date.today() = }")
 
+def process_fao_data():
+    import csv
+    import statistics
+    ghana_data = dict()
+    ivory_coast_data = dict()
+    with open("FAOSTAT_data_7-23-2022.csv") as f:
+        fao_reader = csv.reader(f)
+        for row in fao_reader:
+            data = row[11]
+            year = row[9]
+            field = row[5]
+            if row[3] == 'Ghana':
+                if year not in ghana_data:
+                    ghana_data[year] = dict()
+                if field == 'Area harvested':
+                    ghana_data[year]['Area harvested'] = data
+                elif field == 'Yield':
+                    ghana_data[year]['Yield'] = data
+                elif field == 'Production':
+                    ghana_data[year]['Production'] = data
+            elif row[3] == "Côte d'Ivoire":
+                if year not in ivory_coast_data:
+                    ivory_coast_data[year] = dict()
+                    #the dictionary now exists
+                if field == 'Area harvested':
+                    ivory_coast_data[year]['Area harvested'] = data
+                elif field == 'Yield':
+                    ivory_coast_data[year]['Yield'] = data
+                elif field == 'Production':
+                    ivory_coast_data[year]['Production'] = data
+    years = list()
+    production_ivory_coast = list()
+    with open('ivory_coast.txt', 'w') as f:
+        for year, data in ivory_coast_data.items():
+            print(f"{year}\t{data['Area harvested']}\t{data['Yield']}\t{data['Production']}", file=f)
+    production_ghana = list()
+    with open('ghana.txt', 'w') as f:
+        for year, data in ghana_data.items():
+            print(f"{year}\t{data['Area harvested']}\t{data['Yield']}\t{data['Production']}", file=f)
+
+    #linear regression
+    slope_ic, intercept_ic = statistics.linear_regression(years, production_ivory_coast)
+    slope_g, intercept_g = statistics.linear_regression(years, production_ghana)
+    print(f"Ivory Coast: production = {slope_ic}*year + {intercept_ic}")
+    print(f"Ghana: production = {slope_g}*year + {intercept_g}")
+
+    #predictions
+    print(f"2030 Ivory coast production: {slope_ic * 2030 + intercept_ic}")
+    print(f"2030 Ghana production: {slope_g * 2030 + intercept_g}")
+
+
+
+
+
 
 def main():
-    # using_math_library()
-    # using_cmath_library()
-    using_datetime_library()
+    #using_math_library()
+   # using_cmath_library()
+   # using_datetime_library()
+   # using_shuffle()
+    process_fao_data()
     return 0
-
 
 if __name__ == '__main__':
     sys.exit(main())
+
+def Al_kashi_theorem():
+    a = float(input("a: "))
+    b = float(input("b: "))
+    y = float(input("y: "))
+    # discriminant =
+    # c =
+    # print()
+
+def using_shuffle():
+    my_list = list(range(127, 349))
+    print(f"{my_list = }")
+
+
+
+
