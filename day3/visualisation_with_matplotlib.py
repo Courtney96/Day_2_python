@@ -117,12 +117,12 @@ def plot_axes():
 
 
 def main():
-      plot_lines()
-    # plot_scatter()
+     # plot_lines()
+     # plot_scatter()
     # plot_barchart()
     # plot_histogram()
-    # plot_boxplot()
-    # plot_multiplots_and_export()
+    #  plot_boxplot()
+      plot_multiplots_and_export()
     # plot_legend()
     # plot_titles_and_text()
     # plot_axes()
